@@ -37,11 +37,11 @@ func click(url string) string {
 	defer wd.Quit()
 	wd.Get(url)
     	img, _ := wd.Screenshot()
-    	ioutil.WriteFile("/usr/local/go/src/thirdeye/public/img/screen.png", img, 0x755)
-	//
-	// 
-	//
-    filename := "screen.png"
+    	ioutil.WriteFile("/go/src/thirdeye/public/img/screen.png", img, 0x755)
+//
+// 
+//
+    	filename := "screen.png"
 	return filename
 }
 //
