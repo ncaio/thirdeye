@@ -4,6 +4,7 @@ import (
     "github.com/revel/revel"
     "bitbucket.org/tebeka/selenium"
     "io/ioutil"
+    "log"
     "h12.me/socks"
     "net/http"
 )
@@ -15,8 +16,21 @@ type App struct {
 //
 //
 func (c App) Index() revel.Result {
-    iptor := torexitip()
+    	iptor := torexitip()
+	go reloadip()
 	return c.Render(iptor)
+}
+//
+//  FUNCAO RELOADIP - FAZ A ROLETA GIRAR
+//
+func reloadip() {
+	conn, err := net.Dial("tcp", "localhost:9051")
+	if err != nil {
+		log.Printf("ERRO: tcp localhost 9051")
+	}
+	fmt.Fprintf(conn, "authenticate\r\n\r\n")
+	fmt.Fprintf(conn, "signal newnym\r\n\r\n")
+	return
 }
 //
 //
