@@ -7,6 +7,8 @@ import (
     "log"
     "h12.me/socks"
     "net/http"
+    "net"
+    "fmt"
 )
 
 type App struct {
